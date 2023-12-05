@@ -1,9 +1,10 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, Space } from 'antd';
 import { useEffect } from 'react';
 
 type FieldType = {
   username?: string;
   password?: string;
+  confirmPassword?: string;
   remember?: string;
 };
 
@@ -48,6 +49,16 @@ const Register = () => {
       </Form.Item>
 
       <Form.Item<FieldType>
+        name='confirmPassword'
+        rules={[
+          { required: true, message: 'Please input your confirm password!' }
+        ]}
+        shouldUpdate
+      >
+        <Input.Password />;
+      </Form.Item>
+
+      <Form.Item<FieldType>
         name='remember'
         valuePropName='checked'
         wrapperCol={{ offset: 8, span: 16 }}
@@ -55,17 +66,15 @@ const Register = () => {
         <Checkbox>Remember me</Checkbox>
       </Form.Item>
 
-      <Form.Item<FieldType>
-        name='remember'
-        valuePropName='checked'
-        wrapperCol={{ offset: 8, span: 16 }}
-      ></Form.Item>
-
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type='primary' htmlType='submit'>
           Submit
         </Button>
       </Form.Item>
+      <Space>
+        <Button type='primary'>Primary</Button>
+        <Button>Default</Button>
+      </Space>
     </Form>
   );
 };
